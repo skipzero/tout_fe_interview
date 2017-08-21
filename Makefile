@@ -7,6 +7,7 @@ server: node_modules/
 	$(NPM_BIN)/http-server
 
 build: node_modules/
+	cp src/*.css public/
 	$(NPM_BIN)/webpack --env.dev
 
 lint:

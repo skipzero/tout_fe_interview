@@ -73,11 +73,47 @@
 "use strict";
 
 
-var today = Date.now();
+// const today = Date.now();
 // eslint-disable-next-line no-console
-console.log("Everything is working!\n" + today + "\nYay! \uD83D\uDE01\uD83C\uDF89");
+// console.log(`Everything is working!\n${today}\nYay! 😁🎉`);
+var timer = function timer(sec, timerNum) {
+  var timerEl = document.querySelector("#t" + timerNum); // get our specific timer
+  var secInt = sec;
+  timerEl.innerHTML = secInt;
+  console.log(secInt);
 
-module.exports = today;
+  var ourTimer = setTimeout(function () {
+    timer(secInt, timerNum);
+  }, 1000); // one second intervals
+
+  if (secInt < 1) {
+    clearTimeout(ourTimer);
+    return;
+  }
+  secInt = secInt - 1;
+};
+
+timer(60, 1);
+
+setTimeout(function () {
+  timer(24, 2);
+}, 200);
+
+setTimeout(function () {
+  timer(60, 3);
+}, 500);
+
+setTimeout(function () {
+  timer(80, 4);
+}, 1000);
+
+setTimeout(function () {
+  timer(45, 5);
+}, 600);
+
+setTimeout(function () {
+  timer(30, 6);
+}, 100);
 
 /***/ })
 /******/ ]);

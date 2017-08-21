@@ -6,6 +6,7 @@ const baseConfig = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
+  watch: true,
   module: {
     rules: [
       // Compile everything with babel.
