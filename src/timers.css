@@ -1,19 +1,52 @@
 body {
-  background: #ccc;
+  font: 10px bold courier sans-serif;
 }
 
 .timers-container {
   align-items: center;
   display: flex;
-  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px auto;
+  width: 700px;
+}
+
+.timers-container p {
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
 div[class^='timer-'] {
   border: 1px solid #f00;
   border-radius: 50%;
+  font-size: 42px;
+  font-weight: bold;
   height: 200px;
+  line-height: 200px;
   margin-right: 20px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  top: 0;
   width: 200px;
+}
+
+div[class^='timer-'] div {
+  content: '';
+  border: 1px solid #0f5;
+  display: block;
+  height: 200px;
+  position: absolute;
+  width: 200px;
+}
+
+div.timer-2 {
+  background-color: #0f0;
+}
+
+div.timer-2 .transition {
+  background-color: #f00;
+  transition-property: background-color;
+  transition-duration: 30s;
 }

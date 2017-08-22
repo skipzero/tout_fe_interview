@@ -79,6 +79,8 @@ var _from2 = _interopRequireDefault(_from);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint no-console: 'off' */
+
 // const today = Date.now();
 // eslint-disable-next-line no-console
 // console.log(`Everything is working!\n${today}\nYay! 😁🎉`);
@@ -86,13 +88,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var timerList = document.querySelectorAll('.time'); // our timer array
 var timerArr = (0, _from2.default)(timerList);
 
-console.log(timerArr);
-
 var timer = function timer(sec, timerNum) {
   var timerEl = document.querySelector('#t' + timerNum); // get our specific timer
   var secInt = sec;
+
+  if (timerNum === 2) {
+    timerEl.style.transitionDuration = secInt;
+    timerEl.classList.add('transition');
+  }
+
   timerEl.innerHTML = secInt;
-  console.log(secInt);
+  console.log(timerEl.innerHTML);
 
   var ourTimer = setTimeout(function () {
     timer(secInt, timerNum);
@@ -113,12 +119,17 @@ var timer = function timer(sec, timerNum) {
 
 var timerListeningArr = timerArr.map(function (el, index) {
   el.addEventListener('click', function (e) {
-    console.log(e.target.id);
-    console.log(e);
+    var elId = e.target.id[1];
+    console.log('\n' + e.target.id[1] + '\n');
+    if (el.innerHTML < 1) {
+      var newDur = Math.floor(Math.random() * 100);
+      timer(newDur, elId);
+    }
   });
   return el;
 });
 
+// Our global method give a duration and a timer # to start that timer
 window.setTimer = function (dur, el) {
   return timer(dur, el);
 };
