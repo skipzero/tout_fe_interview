@@ -6,7 +6,7 @@ const baseConfig = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
-  watch: true,
+  watch: false,
   module: {
     rules: [
       // Pull in our css so I don't forget to run make css again...

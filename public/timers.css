@@ -54,3 +54,18 @@ div[class^='timer-'] div {
   transition-property: background-color;
   transition-duration: 30s;
 }
+
+.timer-5 {
+  background: #ccc;
+  margin: -3px;
+}
+
+.timer-5 .inner-timer {
+  position: absolute;;
+  top: 0;
+  width: 100%;
+}
+
+.timer-5 .inner-html.transition {
+
+}

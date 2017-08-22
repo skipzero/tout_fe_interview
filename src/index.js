@@ -9,24 +9,27 @@ const timerList = document.querySelectorAll('.time'); // our timer array
 const timerArr = Array.from(timerList);
 
 const timer = (sec, timerNum) => {
-  let timerEl = document.querySelector(`#t${timerNum}`); // get our specific timer
+
+  const timerEl = document.querySelector(`#t${timerNum}`); // get our specific timer
+  const timerSpan = document.querySelector(`#t${timerNum} span`); // get timer span
+  const innerTimer = document.querySelector('#t5 .inner-timer');
+
   let secInt = sec;
 
-  timerEl.innerHTML = `<span>${secInt}</span>`;
+  timerSpan.innerHTML = `${secInt}`;
 
   if (timerNum === 2) {
-    timerEl.style.transitionDuration = secInt;
     timerEl.classList.add('transition');
+    timerEl.style.transition = `background ${secInt}s`;
   }
 
   if (timerNum === 5) {
-    timerEl.innerHTML += '<div class="inner-timer"></div>';
+    innerTimer.style.transition = `top ${secInt}s`;
+    innerTimer.classList.add('transition');
   }
 
   if (secInt > 0) {
     setTimeout(() => {
-      console.log('SetTimeout...');
-      console.log(secInt);
 
       timer(secInt - 1, timerNum);
     }, 1000); // one second intervals
@@ -35,13 +38,15 @@ const timer = (sec, timerNum) => {
 
 const timerListeningArr = timerArr.map((el) => {
   el.addEventListener('click', (e) => {
-    const elId = e.target.id[1];
+    const elId = e.currentTarget.id[1];
+    const timerVal = el.querySelector(`span`); // get timer span
 
-    if (el.innerHTML > 1) {
-      if (elId === 2) {
+    if (timerVal.innerHTML < 1) {
+      let newDur = Math.floor(Math.random() * 100);
+
+      if (elId === 2) { // it seems to skip over this even when elId is 2...
         el.classList.remove('transition');
       }
-      let newDur = Math.floor(Math.random() * 100);
       timer(newDur, elId);
     }
   });
@@ -53,7 +58,7 @@ window.setTimer = (dur, el) => {
   return timer(dur, el);
 };
 
-// initial values for onPageLoad...
+// initial values for page load...
 timer(60, 1);
 
 setTimeout(() => {
@@ -66,12 +71,12 @@ setTimeout(() => {
 
 setTimeout(() => {
   timer(55, 4);
-},1000);
+},100);
 
 setTimeout(() => {
   timer(45, 5);
 },600);
 
 setTimeout(() => {
-  timer(30, 6);
-},100);
+  timer(10, 6);
+},800);

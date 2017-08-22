@@ -508,24 +508,27 @@ var timerList = document.querySelectorAll('.time'); // our timer array
 var timerArr = (0, _from2.default)(timerList);
 
 var timer = function timer(sec, timerNum) {
+
   var timerEl = document.querySelector('#t' + timerNum); // get our specific timer
+  var timerSpan = document.querySelector('#t' + timerNum + ' span'); // get timer span
+  var innerTimer = document.querySelector('#t5 .inner-timer');
+
   var secInt = sec;
 
-  timerEl.innerHTML = '<span>' + secInt + '</span>';
+  timerSpan.innerHTML = '' + secInt;
 
   if (timerNum === 2) {
-    timerEl.style.transitionDuration = secInt;
     timerEl.classList.add('transition');
+    timerEl.style.transition = 'background ' + secInt + 's';
   }
 
   if (timerNum === 5) {
-    timerEl.innerHTML += '<div class="inner-timer"></div>';
+    innerTimer.style.transition = 'top ' + secInt + 's';
+    innerTimer.classList.add('transition');
   }
 
   if (secInt > 0) {
     setTimeout(function () {
-      console.log('SetTimeout...');
-      console.log(secInt);
 
       timer(secInt - 1, timerNum);
     }, 1000); // one second intervals
@@ -534,13 +537,16 @@ var timer = function timer(sec, timerNum) {
 
 var timerListeningArr = timerArr.map(function (el) {
   el.addEventListener('click', function (e) {
-    var elId = e.target.id[1];
+    var elId = e.currentTarget.id[1];
+    var timerVal = el.querySelector('span'); // get timer span
 
-    if (el.innerHTML > 1) {
+    if (timerVal.innerHTML < 1) {
+      var newDur = Math.floor(Math.random() * 100);
+
       if (elId === 2) {
+        // it seems to skip over this even when elId is 2...
         el.classList.remove('transition');
       }
-      var newDur = Math.floor(Math.random() * 100);
       timer(newDur, elId);
     }
   });
@@ -552,7 +558,7 @@ window.setTimer = function (dur, el) {
   return timer(dur, el);
 };
 
-// initial values for onPageLoad...
+// initial values for page load...
 timer(60, 1);
 
 setTimeout(function () {
@@ -565,15 +571,15 @@ setTimeout(function () {
 
 setTimeout(function () {
   timer(55, 4);
-}, 1000);
+}, 100);
 
 setTimeout(function () {
   timer(45, 5);
 }, 600);
 
 setTimeout(function () {
-  timer(30, 6);
-}, 100);
+  timer(10, 6);
+}, 800);
 
 /***/ }),
 /* 29 */
@@ -1133,7 +1139,7 @@ exports = module.exports = __webpack_require__(56)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  font: 10px bold courier sans-serif;\n}\n\n.timers-container {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin: 10px auto;\n  width: 800px;\n}\n\n.timers-container p {\n  font-size: 22px;\n  margin-bottom: 20px;\n}\n\nh1 {\n  font-size: 36px;\n}\n\ndiv[class^='timer-'] {\n  border: 1px solid #f00;\n  border-radius: 50%;\n  font-size: 42px;\n  font-weight: bold;\n  height: 200px;\n  line-height: 200px;\n  margin: 20px;\n  overflow: hidden;\n  position: relative;\n  text-align: center;\n  top: 0;\n  width: 200px;\n}\n\ndiv[class^='timer-'] div {\n  content: '';\n  border: 1px solid #0f5;\n  display: block;\n  height: 200px;\n  position: absolute;\n  width: 200px;\n}\n\n.timer-2 {\n  background-color: #0f0;\n}\n\n.timer-2.transition {\n  background-color: #f00;\n  transition-property: background-color;\n  transition-duration: 30s;\n}\n\n.timer-5 {\n  background: #ccc;\n  margin: -3px;\n}\n\n.timer-5 .inner-timer {\n  position: absolute;;\n  top: 0;\n  width: 100%;\n}\n\n.timer-5 .inner-html.transition {\n\n}\n", ""]);
+exports.push([module.i, "body {\n  font: 10px bold courier sans-serif;\n}\n\n.timers-container {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin: 10px auto;\n  width: 800px;\n}\n\n.timers-container p {\n  font-size: 22px;\n  margin-bottom: 20px;\n}\n\nh1 {\n  font-size: 36px;\n}\n\ndiv[class^='timer-'] {\n  border: 2px solid #ccc;\n  border-radius: 50%;\n  font-size: 42px;\n  font-weight: bold;\n  height: 200px;\n  margin: 20px;\n  overflow: hidden;\n  position: relative;\n  text-align: center;\n  top: 0;\n  width: 200px;\n}\n\ndiv[class^='timer-'] div {\n  height: 100%;\n  position: absolute;\n  width: 100%;\n}\n\ndiv[class^='timer-'] span {\n  display: block;\n  height: 100%;\n  line-height: 200px;\n  width: 100%;\n  z-index: 20;\n  position: absolute;\n}\n\n\n.timer-2 {\n  background-color: #fff;\n}\n\n.timer-2.transition {\n  background-color: #18a30b;\n}\n\n.timer-5 {\n  background: #ccc;\n  margin: -3px;\n}\n\n.timer-5 .inner-timer {\n  background: #4286f4;\n  /*opacity: .8;*/\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n}\n\n.timer-5 .inner-timer.transition {\n  top: 0%;\n}\n", ""]);
 
 // exports
 

@@ -5,10 +5,7 @@ all: build server
 
 server: node_modules/
 	$(NPM_BIN)/http-server
-
-css:
-	cp src/*.css public/
-
+	
 build: node_modules/
 	cp src/*.css public/
 	$(NPM_BIN)/webpack --env.dev
