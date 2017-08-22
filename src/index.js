@@ -19,8 +19,8 @@ const timer = (sec, timerNum) => {
   timerSpan.innerHTML = `${secInt}`;
 
   if (timerNum === 2) {
-    timerEl.classList.add('transition');
     timerEl.style.transition = `background ${secInt}s`;
+    timerEl.classList.add('transition');
   }
 
   if (timerNum === 5) {
@@ -40,13 +40,14 @@ const timerListeningArr = timerArr.map((el) => {
   el.addEventListener('click', (e) => {
     const elId = e.currentTarget.id[1];
     const timerVal = el.querySelector(`span`); // get timer span
+    el.classList.remove('transition');
 
     if (timerVal.innerHTML < 1) {
       let newDur = Math.floor(Math.random() * 100);
 
-      if (elId === 2) { // it seems to skip over this even when elId is 2...
-        el.classList.remove('transition');
-      }
+      // if (elId === 2) { // it seems to skip over this even when elId is 2...
+      //   el.classList.remove('transition');
+      // }
       timer(newDur, elId);
     }
   });

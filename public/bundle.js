@@ -518,8 +518,8 @@ var timer = function timer(sec, timerNum) {
   timerSpan.innerHTML = '' + secInt;
 
   if (timerNum === 2) {
-    timerEl.classList.add('transition');
     timerEl.style.transition = 'background ' + secInt + 's';
+    timerEl.classList.add('transition');
   }
 
   if (timerNum === 5) {
@@ -539,14 +539,14 @@ var timerListeningArr = timerArr.map(function (el) {
   el.addEventListener('click', function (e) {
     var elId = e.currentTarget.id[1];
     var timerVal = el.querySelector('span'); // get timer span
+    el.classList.remove('transition');
 
     if (timerVal.innerHTML < 1) {
       var newDur = Math.floor(Math.random() * 100);
 
-      if (elId === 2) {
-        // it seems to skip over this even when elId is 2...
-        el.classList.remove('transition');
-      }
+      // if (elId === 2) { // it seems to skip over this even when elId is 2...
+      //   el.classList.remove('transition');
+      // }
       timer(newDur, elId);
     }
   });
