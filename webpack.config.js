@@ -9,6 +9,11 @@ const baseConfig = {
   watch: true,
   module: {
     rules: [
+      // Pull in our css so I don't forget to run make css again...
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader'],
+      },
       // Compile everything with babel.
       {
         test: /\.js$/,
@@ -25,4 +30,4 @@ const baseConfig = {
 // https://webpack.js.org/configuration/configuration-types/#exporting-a-function-to-use-env
 module.exports = function() {
   return baseConfig;
-}
+};

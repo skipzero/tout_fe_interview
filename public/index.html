@@ -4,16 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="timers.css" />
+  <!-- <link rel="stylesheet" href="timers.css" /> -->
 </head>
 <body>
     <h1>Our Timers</h1>
 
     <div class="timers-container">
-      <p>
-        Initial values and delays are set. these can be overridden with the global method, setTimer(x, y). Where x === duration and y = timer number. Timers are numbered top left to bottom right from 1. (1-6).
-        Clicking a timer after it reaches 0 will set that timer to go again with a random number between 0-100.
-      </p>
+
       <div class="timer-1 time" id="t1">
       </div>
 
@@ -31,7 +28,12 @@
 
       <div class="timer-6 time" id="t6">
       </div>
-      
+
+      <p>
+        Initial values and delays are set. these can be overridden with the global method, setTimer(x, y). Where x === duration and y = timer number. Timers are numbered top left to bottom right from 1. (1-6).
+        Clicking a timer after it reaches 0 will set that timer to go again with a random number between 0-100.
+      </p>
+
     </div>
   <script src="bundle.js"></script>
 </body>

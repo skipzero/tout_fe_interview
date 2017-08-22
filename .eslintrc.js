@@ -6,6 +6,7 @@ module.exports = {
     node: true,
     es6: true,
   },
+  sourceType: 'modules',
   globals: {
     TOUT: false,
     __SDK_VERSION__: '__SDK_VERSION__',

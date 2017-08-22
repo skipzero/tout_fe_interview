@@ -9,12 +9,16 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin: 10px auto;
-  width: 700px;
+  width: 800px;
 }
 
 .timers-container p {
-  font-size: 16px;
+  font-size: 22px;
   margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 36px;
 }
 
 div[class^='timer-'] {
@@ -24,7 +28,7 @@ div[class^='timer-'] {
   font-weight: bold;
   height: 200px;
   line-height: 200px;
-  margin-right: 20px;
+  margin: 20px;
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -41,11 +45,11 @@ div[class^='timer-'] div {
   width: 200px;
 }
 
-div.timer-2 {
+.timer-2 {
   background-color: #0f0;
 }
 
-div.timer-2 .transition {
+.timer-2.transition {
   background-color: #f00;
   transition-property: background-color;
   transition-duration: 30s;
