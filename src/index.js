@@ -59,7 +59,7 @@ const timerListeningArr = timerArr.map((el) => {
 
 // Our global method give a duration and a timer # to start that timer
 window.setTimer = (dur, el) => {
-  clearTimeout(clearArr[el - 1]);
+  clearTimeout(clearArr[el - 1]); // clear existing timeout before starting a new one on same element
   return timer(dur, el);
 };
 
