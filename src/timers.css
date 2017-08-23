@@ -50,6 +50,10 @@ div[class^='timer-'] span {
   position: absolute;
 }
 
+.blink {
+  transition: background-color 2s ease;
+  background: #42dff4;
+}
 
 .timer-2 {
   background-color: #fff;

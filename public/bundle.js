@@ -518,6 +518,10 @@ var timer = function timer(sec, timerNum) {
   var secInt = sec;
 
   timerSpan.innerHTML = '' + secInt;
+  console.log(13 % secInt);
+  if (13 % secInt === 0 && timerNum != 7 || timerNum != 2) {
+    timerEl.classList.toggle('blink');
+  }
 
   if (timerNum === 2) {
     timerEl.style.transition = 'background ' + secInt + 's';
@@ -1146,7 +1150,7 @@ exports = module.exports = __webpack_require__(56)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  font: 10px bold courier sans-serif;\n}\n\n.timers-container {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin: 10px auto;\n  width: 800px;\n}\n\n.timers-container p {\n  font-size: 22px;\n  margin-bottom: 20px;\n}\n\nh1 {\n  font-size: 36px;\n}\n\ndiv[class^='timer-'] {\n  border: 2px solid #ccc;\n  border-radius: 50%;\n  font-size: 42px;\n  font-weight: bold;\n  height: 200px;\n  margin: 20px;\n  overflow: hidden;\n  position: relative;\n  text-align: center;\n  top: 0;\n  width: 200px;\n}\n\ndiv[class^='timer-'] div {\n  height: 100%;\n  position: absolute;\n  width: 100%;\n}\n\ndiv[class^='timer-'] span {\n  display: block;\n  height: 100%;\n  line-height: 200px;\n  width: 100%;\n  z-index: 20;\n  position: absolute;\n}\n\n\n.timer-2 {\n  background-color: #fff;\n}\n\n.timer-2.transition {\n  background-color: #18a30b;\n}\n\n.timer-2.reset {\n  background-color: #fff;\n}\n\n.timer-5 {\n  background: #ccc;\n  margin: -3px;\n}\n\n.timer-5 .inner-timer {\n  background: #4286f4;\n  /*opacity: .8;*/\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n}\n\n.timer-5 .inner-timer.transition {\n  top: 0%;\n}\n\n.timer-5 .inner-timer.reset {\n  top: 100%;\n}\n", ""]);
+exports.push([module.i, "body {\n  font: 10px bold courier sans-serif;\n}\n\n.timers-container {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin: 10px auto;\n  width: 800px;\n}\n\n.timers-container p {\n  font-size: 22px;\n  margin-bottom: 20px;\n}\n\nh1 {\n  font-size: 36px;\n}\n\ndiv[class^='timer-'] {\n  border: 2px solid #ccc;\n  border-radius: 50%;\n  font-size: 42px;\n  font-weight: bold;\n  height: 200px;\n  margin: 20px;\n  overflow: hidden;\n  position: relative;\n  text-align: center;\n  top: 0;\n  width: 200px;\n}\n\ndiv[class^='timer-'] div {\n  height: 100%;\n  position: absolute;\n  width: 100%;\n}\n\ndiv[class^='timer-'] span {\n  display: block;\n  height: 100%;\n  line-height: 200px;\n  width: 100%;\n  z-index: 20;\n  position: absolute;\n}\n\n.blink {\n  transition: background-color 2s ease;\n  background: #42dff4;\n}\n\n.timer-2 {\n  background-color: #fff;\n}\n\n.timer-2.transition {\n  background-color: #18a30b;\n}\n\n.timer-2.reset {\n  background-color: #fff;\n}\n\n.timer-5 {\n  background: #ccc;\n  margin: -3px;\n}\n\n.timer-5 .inner-timer {\n  background: #4286f4;\n  /*opacity: .8;*/\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n}\n\n.timer-5 .inner-timer.transition {\n  top: 0%;\n}\n\n.timer-5 .inner-timer.reset {\n  top: 100%;\n}\n", ""]);
 
 // exports
 

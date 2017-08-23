@@ -19,6 +19,10 @@ const timer = (sec, timerNum) => {
   let secInt = sec;
 
   timerSpan.innerHTML = `${secInt}`;
+console.log(13 % secInt)
+  if (13 % secInt === 0 && timerNum != 7 || timerNum != 2) {
+    timerEl.classList.toggle('blink');
+  }
 
   if (timerNum === 2) {
     timerEl.style.transition = `background ${secInt}s`;
