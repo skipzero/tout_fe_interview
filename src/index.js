@@ -8,11 +8,13 @@ import css from './timers.css';
 const timerList = document.querySelectorAll('.time'); // our timer array
 const timerArr = Array.from(timerList);
 
+let clearArr = [];
+
 const timer = (sec, timerNum) => {
 
   const timerEl = document.querySelector(`#t${timerNum}`); // get our specific timer
   const timerSpan = document.querySelector(`#t${timerNum} span`); // get timer span
-  const innerTimer = document.querySelector('#t5 .inner-timer');
+  const innerTimer = document.querySelector('#t5 .inner-timer'); // inner div for animation
 
   let secInt = sec;
 
@@ -28,12 +30,21 @@ const timer = (sec, timerNum) => {
     innerTimer.classList.add('transition');
   }
 
-  if (secInt > 0) {
-    setTimeout(() => {
+  console.log(timerEl.classList);
 
-      timer(secInt - 1, timerNum);
-    }, 1000); // one second intervals
+  if (timerEl.classList.contains('stop')) {
+    debugger;
+    const clearEl = clearArr[timerNum - 1]
+    clearTimeout(clearEl);
+    timerEl.classList.remove('stop');
   }
+
+  if (secInt > 0) {
+    const resetId = setTimeout(() => {
+      timer(secInt - 1, timerNum);
+     }, 1000); // one second intervals
+     clearArr[timerNum - 1] = resetId;
+   }
 };
 
 const timerListeningArr = timerArr.map((el) => {
@@ -41,6 +52,7 @@ const timerListeningArr = timerArr.map((el) => {
     const elId = e.currentTarget.id[1];
     const timerVal = el.querySelector(`span`); // get timer span
     el.classList.remove('transition');
+    el.classList.add('reset');
 
     if (timerVal.innerHTML < 1) {
       let newDur = Math.floor(Math.random() * 100);
@@ -56,6 +68,9 @@ const timerListeningArr = timerArr.map((el) => {
 
 // Our global method give a duration and a timer # to start that timer
 window.setTimer = (dur, el) => {
+  const clearEl = document.querySelector(`#t${el}`);
+  clearEl.classList.add('stop');
+  console.log(clearEl);
   return timer(dur, el);
 };
 

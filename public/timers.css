@@ -22,12 +22,11 @@ h1 {
 }
 
 div[class^='timer-'] {
-  border: 1px solid #f00;
+  border: 2px solid #ccc;
   border-radius: 50%;
   font-size: 42px;
   font-weight: bold;
   height: 200px;
-  line-height: 200px;
   margin: 20px;
   overflow: hidden;
   position: relative;
@@ -37,22 +36,31 @@ div[class^='timer-'] {
 }
 
 div[class^='timer-'] div {
-  content: '';
-  border: 1px solid #0f5;
-  display: block;
-  height: 200px;
+  height: 100%;
   position: absolute;
-  width: 200px;
+  width: 100%;
 }
 
+div[class^='timer-'] span {
+  display: block;
+  height: 100%;
+  line-height: 200px;
+  width: 100%;
+  z-index: 20;
+  position: absolute;
+}
+
+
 .timer-2 {
-  background-color: #0f0;
+  background-color: #fff;
 }
 
 .timer-2.transition {
-  background-color: #f00;
-  transition-property: background-color;
-  transition-duration: 30s;
+  background-color: #18a30b;
+}
+
+.timer-2.reset {
+  background-color: #fff;
 }
 
 .timer-5 {
@@ -61,11 +69,18 @@ div[class^='timer-'] div {
 }
 
 .timer-5 .inner-timer {
-  position: absolute;;
-  top: 0;
+  background: #4286f4;
+  /*opacity: .8;*/
+  position: absolute;
+  top: 100%;
   width: 100%;
+  z-index: 1;
 }
 
-.timer-5 .inner-html.transition {
+.timer-5 .inner-timer.transition {
+  top: 0%;
+}
 
+.timer-5 .inner-timer.reset {
+  top: 100%;
 }

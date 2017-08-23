@@ -507,11 +507,13 @@ var timerList = document.querySelectorAll('.time'); // our timer array
 // console.log(`Everything is working!\n${today}\nYay! 😁🎉`);
 var timerArr = (0, _from2.default)(timerList);
 
+var clearArr = [];
+
 var timer = function timer(sec, timerNum) {
 
   var timerEl = document.querySelector('#t' + timerNum); // get our specific timer
   var timerSpan = document.querySelector('#t' + timerNum + ' span'); // get timer span
-  var innerTimer = document.querySelector('#t5 .inner-timer');
+  var innerTimer = document.querySelector('#t5 .inner-timer'); // inner div for animation
 
   var secInt = sec;
 
@@ -527,11 +529,20 @@ var timer = function timer(sec, timerNum) {
     innerTimer.classList.add('transition');
   }
 
-  if (secInt > 0) {
-    setTimeout(function () {
+  console.log(timerEl.classList);
 
+  if (timerEl.classList.contains('stop')) {
+    debugger;
+    var clearEl = clearArr[timerNum - 1];
+    clearTimeout(clearEl);
+    timerEl.classList.remove('stop');
+  }
+
+  if (secInt > 0) {
+    var resetId = setTimeout(function () {
       timer(secInt - 1, timerNum);
     }, 1000); // one second intervals
+    clearArr[timerNum - 1] = resetId;
   }
 };
 
@@ -540,6 +551,7 @@ var timerListeningArr = timerArr.map(function (el) {
     var elId = e.currentTarget.id[1];
     var timerVal = el.querySelector('span'); // get timer span
     el.classList.remove('transition');
+    el.classList.add('reset');
 
     if (timerVal.innerHTML < 1) {
       var newDur = Math.floor(Math.random() * 100);
@@ -555,6 +567,9 @@ var timerListeningArr = timerArr.map(function (el) {
 
 // Our global method give a duration and a timer # to start that timer
 window.setTimer = function (dur, el) {
+  var clearEl = document.querySelector('#t' + el);
+  clearEl.classList.add('stop');
+  console.log(clearEl);
   return timer(dur, el);
 };
 
@@ -1139,7 +1154,7 @@ exports = module.exports = __webpack_require__(56)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  font: 10px bold courier sans-serif;\n}\n\n.timers-container {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin: 10px auto;\n  width: 800px;\n}\n\n.timers-container p {\n  font-size: 22px;\n  margin-bottom: 20px;\n}\n\nh1 {\n  font-size: 36px;\n}\n\ndiv[class^='timer-'] {\n  border: 2px solid #ccc;\n  border-radius: 50%;\n  font-size: 42px;\n  font-weight: bold;\n  height: 200px;\n  margin: 20px;\n  overflow: hidden;\n  position: relative;\n  text-align: center;\n  top: 0;\n  width: 200px;\n}\n\ndiv[class^='timer-'] div {\n  height: 100%;\n  position: absolute;\n  width: 100%;\n}\n\ndiv[class^='timer-'] span {\n  display: block;\n  height: 100%;\n  line-height: 200px;\n  width: 100%;\n  z-index: 20;\n  position: absolute;\n}\n\n\n.timer-2 {\n  background-color: #fff;\n}\n\n.timer-2.transition {\n  background-color: #18a30b;\n}\n\n.timer-5 {\n  background: #ccc;\n  margin: -3px;\n}\n\n.timer-5 .inner-timer {\n  background: #4286f4;\n  /*opacity: .8;*/\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n}\n\n.timer-5 .inner-timer.transition {\n  top: 0%;\n}\n", ""]);
+exports.push([module.i, "body {\n  font: 10px bold courier sans-serif;\n}\n\n.timers-container {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin: 10px auto;\n  width: 800px;\n}\n\n.timers-container p {\n  font-size: 22px;\n  margin-bottom: 20px;\n}\n\nh1 {\n  font-size: 36px;\n}\n\ndiv[class^='timer-'] {\n  border: 2px solid #ccc;\n  border-radius: 50%;\n  font-size: 42px;\n  font-weight: bold;\n  height: 200px;\n  margin: 20px;\n  overflow: hidden;\n  position: relative;\n  text-align: center;\n  top: 0;\n  width: 200px;\n}\n\ndiv[class^='timer-'] div {\n  height: 100%;\n  position: absolute;\n  width: 100%;\n}\n\ndiv[class^='timer-'] span {\n  display: block;\n  height: 100%;\n  line-height: 200px;\n  width: 100%;\n  z-index: 20;\n  position: absolute;\n}\n\n\n.timer-2 {\n  background-color: #fff;\n}\n\n.timer-2.transition {\n  background-color: #18a30b;\n}\n\n.timer-2.reset {\n  background-color: #fff;\n}\n\n.timer-5 {\n  background: #ccc;\n  margin: -3px;\n}\n\n.timer-5 .inner-timer {\n  background: #4286f4;\n  /*opacity: .8;*/\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n}\n\n.timer-5 .inner-timer.transition {\n  top: 0%;\n}\n\n.timer-5 .inner-timer.reset {\n  top: 100%;\n}\n", ""]);
 
 // exports
 

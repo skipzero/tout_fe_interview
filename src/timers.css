@@ -59,6 +59,10 @@ div[class^='timer-'] span {
   background-color: #18a30b;
 }
 
+.timer-2.reset {
+  background-color: #fff;
+}
+
 .timer-5 {
   background: #ccc;
   margin: -3px;
@@ -75,4 +79,8 @@ div[class^='timer-'] span {
 
 .timer-5 .inner-timer.transition {
   top: 0%;
+}
+
+.timer-5 .inner-timer.reset {
+  top: 100%;
 }
