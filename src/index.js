@@ -34,12 +34,6 @@ const timer = (sec, timerNum) => {
     innerTimer.classList.add('transition');
   }
 
-  if (timerEl.classList.contains('stop')) {
-    const clearEl = clearArr[timerNum - 1]
-    clearTimeout(clearEl);
-    timerEl.classList.remove('stop');
-  }
-
   if (secInt > 0) {
     const resetId = setTimeout(() => {
       timer(secInt - 1, timerNum);
@@ -65,8 +59,7 @@ const timerListeningArr = timerArr.map((el) => {
 
 // Our global method give a duration and a timer # to start that timer
 window.setTimer = (dur, el) => {
-  const clearEl = document.querySelector(`#t${el}`);
-  clearEl.classList.add('stop');
+  clearTimeout(clearArr[el - 1]);
   return timer(dur, el);
 };
 

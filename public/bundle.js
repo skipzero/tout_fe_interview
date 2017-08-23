@@ -533,12 +533,6 @@ var timer = function timer(sec, timerNum) {
     innerTimer.classList.add('transition');
   }
 
-  if (timerEl.classList.contains('stop')) {
-    var clearEl = clearArr[timerNum - 1];
-    clearTimeout(clearEl);
-    timerEl.classList.remove('stop');
-  }
-
   if (secInt > 0) {
     var resetId = setTimeout(function () {
       timer(secInt - 1, timerNum);
@@ -564,8 +558,7 @@ var timerListeningArr = timerArr.map(function (el) {
 
 // Our global method give a duration and a timer # to start that timer
 window.setTimer = function (dur, el) {
-  var clearEl = document.querySelector('#t' + el);
-  clearEl.classList.add('stop');
+  clearTimeout(clearArr[el - 1]);
   return timer(dur, el);
 };
 
