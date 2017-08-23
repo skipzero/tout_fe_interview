@@ -529,10 +529,7 @@ var timer = function timer(sec, timerNum) {
     innerTimer.classList.add('transition');
   }
 
-  console.log(timerEl.classList);
-
   if (timerEl.classList.contains('stop')) {
-    debugger;
     var clearEl = clearArr[timerNum - 1];
     clearTimeout(clearEl);
     timerEl.classList.remove('stop');
@@ -555,10 +552,6 @@ var timerListeningArr = timerArr.map(function (el) {
 
     if (timerVal.innerHTML < 1) {
       var newDur = Math.floor(Math.random() * 100);
-
-      // if (elId === 2) { // it seems to skip over this even when elId is 2...
-      //   el.classList.remove('transition');
-      // }
       timer(newDur, elId);
     }
   });
@@ -569,7 +562,6 @@ var timerListeningArr = timerArr.map(function (el) {
 window.setTimer = function (dur, el) {
   var clearEl = document.querySelector('#t' + el);
   clearEl.classList.add('stop');
-  console.log(clearEl);
   return timer(dur, el);
 };
 

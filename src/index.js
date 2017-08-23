@@ -30,10 +30,7 @@ const timer = (sec, timerNum) => {
     innerTimer.classList.add('transition');
   }
 
-  console.log(timerEl.classList);
-
   if (timerEl.classList.contains('stop')) {
-    debugger;
     const clearEl = clearArr[timerNum - 1]
     clearTimeout(clearEl);
     timerEl.classList.remove('stop');
@@ -56,10 +53,6 @@ const timerListeningArr = timerArr.map((el) => {
 
     if (timerVal.innerHTML < 1) {
       let newDur = Math.floor(Math.random() * 100);
-
-      // if (elId === 2) { // it seems to skip over this even when elId is 2...
-      //   el.classList.remove('transition');
-      // }
       timer(newDur, elId);
     }
   });
@@ -70,7 +63,6 @@ const timerListeningArr = timerArr.map((el) => {
 window.setTimer = (dur, el) => {
   const clearEl = document.querySelector(`#t${el}`);
   clearEl.classList.add('stop');
-  console.log(clearEl);
   return timer(dur, el);
 };
 
