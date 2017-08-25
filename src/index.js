@@ -85,3 +85,27 @@ setTimeout(() => {
 setTimeout(() => {
   timer(10, 6);
 },800);
+
+
+
+// Class constructor takes duration in seconds, element to append timer and an ID expressed as a number.
+// Element should be a class without ID.
+class Timer = (dur, el, id) => {
+  constructor () {
+    this.reset = this.reset.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
+
+    this.duration = dur;
+    this.element = document.querySelector(el);
+    this.timerID = id;
+
+  }
+
+  reset (dur) {
+    if (typeof dur != 'number') {
+      dur = 60; // set a default duration in case none is provided or is NaN.
+      
+    }
+
+  }
+}
