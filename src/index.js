@@ -1,21 +1,22 @@
 /* eslint no-console: 'off' */
 
-// const today = Date.now();
-// eslint-disable-next-line no-console
-// console.log(`Everything is working!\n${today}\nYay! 😁🎉`);
 import css from './timers.css';
-
-const timerList = document.querySelectorAll('.time'); // our timer array
-const timerArr = Array.from(timerList);
-
-let clearArr = [];
 
 const timer = (sec, timerNum) => {
 
+  const timerArr = ['','','','','',''];
   const timerEl = document.querySelector(`#t${timerNum}`); // get our specific timer
   const timerSpan = document.querySelector(`#t${timerNum} span`); // get timer span
   const innerTimer = document.querySelector('#t5 .inner-timer'); // inner div for animation
 
+const timerObj = timerArr.map((timer, indx) => {
+
+  timer.el = document.createElement('div');
+  timer.el.innerHTML =  `<span>${timer.duration}</span>`;
+  timer.id = indx + 1;
+
+  return timer;
+});
   let secInt = sec;
 
   timerSpan.innerHTML = `${secInt}`;
@@ -85,27 +86,3 @@ setTimeout(() => {
 setTimeout(() => {
   timer(10, 6);
 },800);
-
-
-
-// Class constructor takes duration in seconds, element to append timer and an ID expressed as a number.
-// Element should be a class without ID.
-class Timer = (dur, el, id) => {
-  constructor () {
-    this.reset = this.reset.bind(this);
-    this.clickHandler = this.clickHandler.bind(this);
-
-    this.duration = dur;
-    this.element = document.querySelector(el);
-    this.timerID = id;
-
-  }
-
-  reset (dur) {
-    if (typeof dur != 'number') {
-      dur = 60; // set a default duration in case none is provided or is NaN.
-      
-    }
-
-  }
-}
